@@ -76,4 +76,4 @@ def get_ban_status(self, id):
 
         return user.get('ban_status', default)
 
-
+db = Database(MONGO_URI, MONGO_NAME)
