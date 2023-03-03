@@ -56,7 +56,7 @@ def ban_user(self, user_id, ban_reason="No Reason"):
 
         )
 
-        await self.col.update_one({'id': user_id}, {'$set': {'ban_status': ban_status}})
+        self.col.update_one({'id': user_id}, {'$set': {'ban_status': ban_status}})
 
 def get_ban_status(self, id):
 
@@ -68,7 +68,7 @@ def get_ban_status(self, id):
 
         )
 
-        user = await self.col.find_one({'id':int(id)})
+        user = self.col.find_one({'id':int(id)})
 
         if not user:
 
