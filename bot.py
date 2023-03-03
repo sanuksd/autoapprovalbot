@@ -50,7 +50,7 @@ async def approve(_, m : Message):
 
 async def ban(_, m : Message):
 
-    ban = await app.get_ban_status(m.from_user)
+    ban = await database.get_ban_status(m.from_user)
 
     await message.reply(f'Sorry Dude, You are Banned to use Me. \nBan Reason: {ban["ban_reason"]}')
     
