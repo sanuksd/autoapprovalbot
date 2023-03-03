@@ -45,5 +45,15 @@ async def approve(_, m : Message):
     except Exception as err:
         print(str(err))    
  
+
+@app.on_message(filters.command("ban") & filters.user(cfg.SUDO))
+
+async def aban(_, m : Message):
+
+    ban = await db.get_ban_status(m.from_user)
+
+    await message.reply(f'Sorry Dude, You are Banned to use Me. \nBan Reason: {ban["ban_reason"]}')
+    
+    
 print("I'm Alive Now!")
 app.run()
