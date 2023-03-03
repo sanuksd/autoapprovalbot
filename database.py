@@ -75,3 +75,5 @@ def get_ban_status(self, id):
             return default
 
         return user.get('ban_status', default)
+
+db = Database(DATABASE_URI, DATABASE_NAME)
