@@ -45,3 +45,33 @@ def all_groups():
     group = groups.find({})
     grps = len(list(group))
     return grps
+
+def ban_user(self, user_id, ban_reason="No Reason"):
+
+        ban_status = dict(
+
+            is_banned=True,
+
+            ban_reason=ban_reason
+
+        )
+
+        await self.col.update_one({'id': user_id}, {'$set': {'ban_status': ban_status}})
+
+def get_ban_status(self, id):
+
+        default = dict(
+
+            is_banned=False,
+
+            ban_reason=''
+
+        )
+
+        user = await self.col.find_one({'id':int(id)})
+
+        if not user:
+
+            return default
+
+        return user.get('ban_status', default)
