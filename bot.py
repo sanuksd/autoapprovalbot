@@ -48,7 +48,7 @@ async def approve(_, m : Message):
 
 @app.on_message(filters.command("ban") & filters.user(cfg.SUDO))
 
-async def aban(_, m : Message):
+async def ban(_, m : Message):
 
     ban = await db.get_ban_status(m.from_user)
 
