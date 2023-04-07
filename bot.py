@@ -53,6 +53,27 @@ async def op(_, m :Message):
             add_user(m.from_user.id)
             await m.reply_photo("https://graph.org/file/8d7f76a7ca1d39251aee7.jpg", caption="**🦊 Hello {}!\nI'm an auto approve [Admin Join Requests]({}) Bot.\nI can approve users in Groups/Channels.Add me to your chat and promote me to admin with add members permission.\n\n__Powerd By : @cinema_kalavara __**".format(m.from_user.mention, "https://t.me/telegram/153"), reply_markup=keyboard)
 
+        elif m.chat.type == enums.ChatType.GROUP or enums.ChatType.SUPERGROUP:
+            keyboar = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("💁‍♂️ Start me private 💁‍♂️", url="https://t.me/sanufilterv1_bot?start=start")
+                    ]
+                ]
+            )
+            add_group(m.chat.id)
+            await m.reply_text("**🦊 Hello {}!\nwrite me private for more details**".format(m.from_user.first_name), reply_markup=keyboar)
+        print(m.from_user.first_name +" Is started Your Bot!")
+
+    except UserNotParticipant:
+        key = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("🍀 Check Again 🍀", "chk")
+                ]
+            ]
+        )
+        await m.reply_text("**⚠️Access Denied!⚠️\n\nPlease Join @{} to use me.If you joined click check again button to confirm.**".format(cfg.FSUB), reply_markup=key)
 
 print("I'm Alive Now!")
 app.run()
