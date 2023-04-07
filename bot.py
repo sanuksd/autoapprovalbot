@@ -35,6 +35,25 @@ async def approve(_, m : Message):
     except Exception as err:
         print(str(err))    
  
+@app.on_message(filters.command("start"))
+async def op(_, m :Message):
+    try:
+        await app.get_chat_member(cfg.CHID, m.from_user.id) 
+        if m.chat.type == enums.ChatType.PRIVATE:
+            keyboard = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("🗯 Channel", url="https://t.me/sanusmoviesch"),
+                        InlineKeyboardButton("💬 group", url="https://t.me/sanusmovies")
+                    ],[
+                        InlineKeyboardButton("➕ Add me to your Chat ➕", url="https://t.me/kwicapprovalbot?startgroup")
+                    ]
+                ]
+            )
+            add_user(m.from_user.id)
+            await m.reply_photo("https://graph.org/file/8d7f76a7ca1d39251aee7.jpg", caption="**🦊 Hello {}!\nI'm an auto approve [Admin Join Requests]({}) Bot.\nI can approve users in Groups/Channels.Add me to your chat and promote me to admin with add members permission.\n\n__Powerd By : @cinema_kalavara __**".format(m.from_user.mention, "https://t.me/telegram/153"), reply_markup=keyboard)
+
+
 
 @app.on_message(filters.command("ban") & filters.user(cfg.SUDO))
 
