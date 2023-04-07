@@ -54,15 +54,5 @@ async def op(_, m :Message):
             await m.reply_photo("https://graph.org/file/8d7f76a7ca1d39251aee7.jpg", caption="**🦊 Hello {}!\nI'm an auto approve [Admin Join Requests]({}) Bot.\nI can approve users in Groups/Channels.Add me to your chat and promote me to admin with add members permission.\n\n__Powerd By : @cinema_kalavara __**".format(m.from_user.mention, "https://t.me/telegram/153"), reply_markup=keyboard)
 
 
-
-@app.on_message(filters.command("ban") & filters.user(cfg.SUDO))
-
-async def ban(_, m : Message):
-
-    ban = await db.get_ban_status(m.from_user)
-
-    await message.reply(f'Sorry Dude, You are Banned to use Me. \nBan Reason: {ban["ban_reason"]}')
-    
-    
 print("I'm Alive Now!")
 app.run()
